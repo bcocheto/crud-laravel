@@ -18,5 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+// Lista clientes
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/criar', 'HomeController@criar')->name('criar');
+
+Route::post('/criar', 'HomeController@criar')->name('criar');
