@@ -74,6 +74,7 @@ class HomeController extends Controller
             // dd($cliente);
 
             $cliente->save();
+            
             return redirect()->route('home');
  
 

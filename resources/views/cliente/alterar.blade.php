@@ -1,9 +1,11 @@
 @extends('layouts.app')
+@section('title', 'Alterar Cliente')
 @section('content')
 <form action="/atualizar/{{$cliente->id}}" method="POST">
     @csrf
     @method('put')
-    <div class="row">
+    <div class="content">
+        <div class="row">
         <div class="col-25">
             <label for="codigo">Código</label>
         </div>
@@ -38,6 +40,7 @@
 
     <div class="row">
         <input type="submit" value="Atualizar">
+    </div>
     </div>
 </form>
 @endsection

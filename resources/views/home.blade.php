@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Lista de Clientes')
 @section('content')
-<div class="container">
     <div class="table-wrapper">
         <table class="fl-table">
             <thead>
@@ -21,11 +21,11 @@
                 <td>{{$cliente->razao_social}}</td>
                 <td>{{$cliente->cnpj}}</td>
                 <td>{{$cliente->data_inclusao}}</td>
-                <td><a href="/alterar/{{$cliente->id}}">Alterar</a>
+                <td><a class="btn-green" href="/alterar/{{$cliente->id}}">Alterar</a>
                     <form action="/deletar/{{$cliente->id}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button class='btn btn-danger' type='submit'>Deletar</button>
+                        <button class='btn-red' type='submit'>Deletar</button>
                     </form>
                 </td>
             </tr>
@@ -36,5 +36,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
