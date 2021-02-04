@@ -31,9 +31,12 @@ class HomeController extends Controller
         return view('home', ['clientes'=>$clientes]);
     }
 
-    // função responsável por criar clietes
+    // função responsável por criar clientes
     public function criar(Request $request){
 
+        // condicional para realizar a ação de retornar a view com
+        // os dados para cadastro do cliente ou a ação de enviar
+        // os dados inseridos para o banco de dados
         if ($request->isMethod('get')) {
         
             return view('cliente.criar');
@@ -57,24 +60,26 @@ class HomeController extends Controller
     // função responsável por chamar a view para alteração de dados
      public function alterar(Cliente $cliente){
 
-        //  dd($cliente);
-
+        //  retorna a view para editar os dados passando o 
+        // objeto cliente(que contem os dados do cliente)
         return view('cliente.alterar', ['cliente' => $cliente]);
 
          }
 
     // função responsável por alterar os dados
      public function atualizar(Request $request, $cliente_id){
+            
             // acha o cliente
             $cliente = Cliente::find($cliente_id);
+
             // fill acha os atributos do cliente atribuidos
             // a variável $fillable no model
             $cliente->fill($request->all());
 
-            // dd($cliente);
-
+            // salva dados
             $cliente->save();
             
+            // redireciona para a rota padrão
             return redirect()->route('home');
  
 

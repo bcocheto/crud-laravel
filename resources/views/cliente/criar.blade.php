@@ -2,6 +2,7 @@
 @section('title', 'Cadastrar Cliente')
 @section('content')
 <form action="/criar" method="POST">
+<!-- tag padrão para token no laravel -->
     @csrf
     <div class="row">
         <div class="col-25">

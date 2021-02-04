@@ -3,6 +3,7 @@
 @section('content')
 <form action="/atualizar/{{$cliente->id}}" method="POST">
     @csrf
+    <!-- define o método como PUT pois não é suportado pelo html -->
     @method('put')
     <div class="content">
         <div class="row">
