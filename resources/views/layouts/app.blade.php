@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CRUD Laravel') }}</title>
+    <title>{{ config('app.name', 'CRUD Laravel 7.x') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'CRUD Laravel') }}
+                    CRUD - @yield('title')
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -77,14 +77,12 @@
         <div id="container">
         <nav class="menu">
             <ul class="main-menu">
-                <li><a href="home">Clientes</a></li>
-                <li><a href="criar">Cadastro</a></li>
+                <li><a id="a" href="/home">Clientes</a></li>
+                <li><a id="a" href="/criar">Cadastro</a></li>
             </ul>
         </nav>
         <article>
-            <div class="content">
                 @yield('content')
-            </div>
         </article>
     </div>
 </body>

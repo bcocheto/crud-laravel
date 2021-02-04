@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Cadastrar Cliente')
 @section('content')
 <form action="/criar" method="POST">
     @csrf
