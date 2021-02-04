@@ -16,12 +16,18 @@
         <tbody>
             @foreach($clientes as $cliente)
             <tr>
-                <td>{{$cliente->codigo}}</td>
+                <td>{{$cliente->id}}</td>
                 <td>{{$cliente->nome}}</td>
                 <td>{{$cliente->razao_social}}</td>
                 <td>{{$cliente->cnpj}}</td>
                 <td>{{$cliente->data_inclusao}}</td>
-                <td><a href="#">Alterar</a> - <a href="#">Excluir</a></td>
+                <td><a href="/alterar/{{$cliente->id}}">Alterar</a>
+                    <form action="/deletar/{{$cliente->id}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button class='btn btn-danger' type='submit'>Deletar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         <tbody>
