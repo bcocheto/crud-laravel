@@ -6,75 +6,126 @@
 
         <title>CRUD Laravel 7</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+<style>
+            body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;
+	font:600 16px/18px 'Open Sans',sans-serif;
+}
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
         </style>
     </head>
     <body>
+
+        <div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registrar</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="group">
+					<label for="email" class="label">Email</label>
+					<input id="email" type="email" class="form-control @error('email') is-invalid @enderror input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                     @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+				</div>
+				<div class="group">
+					<label for="password" class="label">{{ __('Password') }}</label>
+					<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input" name="password" required autocomplete="current-password">
+                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+				</div>
+				<div class="group">
+					<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Lembrar login?') }}
+                                    </label>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="{{ __('Login') }}">
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+                    @if (Route::has('password.request'))
+					<a href="{{ route('password.request') }}">Esqueceu a senha?</a>
+                    @endif
+				</div>
+			</div>
+                </form>
+			<div class="sign-up-htm">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+				<div class="group">
+					<label for="name" class="label">{{ __('Nome') }}</label>
+					<input id="name" type="text" class="form-control @error('name') is-invalid @enderror input" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+				</div>
+				<div class="group">
+					<label for="password" class="label">{{ __('Senha') }}</label>
+					<input id="password" type="password" class="form-control @error('password') is-invalid @enderror input" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+				</div>
+				<div class="group">
+					<label for="password-confirm" class="label">{{ __('Confirmar Senha') }}</label>
+					<input d="password-confirm" type="password" class="form-control input" name="password_confirmation" required autocomplete="new-password">
+				</div>
+				<div class="group">
+					<label for="email" class="label">{{ __('E-Mail') }}</label>
+					<input id="email" type="email" class="form-control @error('email') is-invalid @enderror input" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+				</div>
+				<div class="group">
+                    <button type="submit" class="button">
+                                    {{ __('Registrar') }}
+                                </button>
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<label for="tab-1">Já é registrado?</a>
+				</div>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
     <div class="content">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class=" links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}"></a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}"></a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registro</a>
+                            <a href="{{ route('register') }}"></a>
                         @endif
                     @endauth
                 </div>
