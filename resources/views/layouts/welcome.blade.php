@@ -19,11 +19,8 @@
     </head>
     <body>
 
-        <div id="container">
-        <article>
+
                 @yield('content')
-        </article>
-    </div>
 
     <div class="content">
         <div class="flex-center position-ref full-height">
