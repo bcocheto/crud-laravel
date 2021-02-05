@@ -1,6 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.welcome')
 
-@section('title', 'Confirmar senha')
 
 @section('content')
 <div class="container">
